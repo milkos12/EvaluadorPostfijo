@@ -44,10 +44,8 @@ public class EvaluadorPostfijo {
                 int total = 0;
                 switch (element) {
                     case "+":
-                        //sumamos todos los números de la pila
-                        for (Integer number: pila) {
-                            total += number;
-                        };
+                        //sumamos los números de la pila
+                        total = pila.get(0) + pila.get(1);
 
                         pila.clear();
                         pila.push(total);
@@ -55,10 +53,8 @@ public class EvaluadorPostfijo {
 
                         break;
                     case "-":
-                        //restamos todos los números de la pila
-                        for (Integer number: pila) {
-                            total -= number;
-                        };
+                        //restamos  los números de la pila
+                        total = pila.get(0) - pila.get(1);
 
                         pila.clear();
                         pila.push(total);
@@ -66,20 +62,15 @@ public class EvaluadorPostfijo {
 
                         break;
                     case "*":
-                        //multiplicamos todos los números de la pila
-                        for (Integer number: pila) {
-                            total *= number;
-                        };
-
+                        //multiplicamos  los números de la pila
+                        total = pila.get(0) * pila.get(1);
                         pila.clear();
                         pila.push(total);
                         total = 0;
                         break;
                     case "/":
-                        //divimos todos los números de la pila
-                        for (Integer number: pila) {
-                            total /= number;
-                        };
+                        //divimos los números de la pila
+                        total = pila.get(0) / pila.get(1);
 
                         pila.clear();
                         pila.push(total);
@@ -89,7 +80,7 @@ public class EvaluadorPostfijo {
 
             }
         }
-
+        System.out.println(pila);
         return pila.pop();
     }
 
