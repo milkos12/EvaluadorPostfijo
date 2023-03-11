@@ -34,45 +34,45 @@ public class EvaluadorPostfijo {
 
         // TODO: Realiza la evaluación de la expresión en formato postfijo
         for (String element: expresion) {
-            System.out.println(element);
+            System.out.println(pila);
             try {
                 // agregar el número a la pila
                 pila.push(Integer.parseInt(element));
 
-                System.out.println("si es número");
             } catch (NumberFormatException e) {
                 int total = 0;
+
+                int sizePila = pila.size();
+                int numUno =  pila.get(sizePila - 1);
+                pila.remove(sizePila -1);
+                sizePila = pila.size();
+                int numDos = pila.get(sizePila - 1);
+                pila.remove(sizePila - 1);
+
                 switch (element) {
                     case "+":
                         //sumamos los números de la pila
-                        total = pila.get(0) + pila.get(1);
-
-                        pila.clear();
+                        total =  numDos + numUno;
                         pila.push(total);
                         total = 0;
 
                         break;
                     case "-":
                         //restamos  los números de la pila
-                        total = pila.get(0) - pila.get(1);
-
-                        pila.clear();
+                        total = numDos - numUno ;
                         pila.push(total);
                         total = 0;
 
                         break;
                     case "*":
                         //multiplicamos  los números de la pila
-                        total = pila.get(0) * pila.get(1);
-                        pila.clear();
+                        total = numDos * numUno;
                         pila.push(total);
                         total = 0;
                         break;
                     case "/":
                         //divimos los números de la pila
-                        total = pila.get(0) / pila.get(1);
-
-                        pila.clear();
+                        total = numDos / numUno;
                         pila.push(total);
                         total = 0;
                         break;
@@ -80,7 +80,7 @@ public class EvaluadorPostfijo {
 
             }
         }
-        System.out.println(pila);
+
         return pila.pop();
     }
 
