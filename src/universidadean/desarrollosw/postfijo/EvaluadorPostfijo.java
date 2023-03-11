@@ -32,7 +32,65 @@ public class EvaluadorPostfijo {
     static int evaluarPostFija(List<String> expresion) {
         Stack<Integer> pila = new Stack<>();
 
+        String[] numbers = {"1","2","3","4","5","6","7","8","9","0"};
+
         // TODO: Realiza la evaluación de la expresión en formato postfijo
+        for (String element: expresion) {
+            System.out.println(element);
+            try {
+                // agregar el número a la pila
+                pila.push(Integer.parseInt(element));
+
+                System.out.println("si es número");
+            } catch (NumberFormatException e) {
+                int total = 0;
+                switch (element) {
+                    case "+":
+                        //sumamos todos los números de la pila
+                        for (Integer number: pila) {
+                            total += number;
+                        };
+
+                        pila.clear();
+                        pila.push(total);
+                        total = 0;
+
+                        break;
+                    case "-":
+                        //restamos todos los números de la pila
+                        for (Integer number: pila) {
+                            total -= number;
+                        };
+
+                        pila.clear();
+                        pila.push(total);
+                        total = 0;
+
+                        break;
+                    case "*":
+                        //multiplicamos todos los números de la pila
+                        for (Integer number: pila) {
+                            total *= number;
+                        };
+
+                        pila.clear();
+                        pila.push(total);
+                        total = 0;
+                        break;
+                    case "/":
+                        //divimos todos los números de la pila
+                        for (Integer number: pila) {
+                            total /= number;
+                        };
+
+                        pila.clear();
+                        pila.push(total);
+                        total = 0;
+                        break;
+                }
+
+            }
+        }
 
         return pila.pop();
     }
